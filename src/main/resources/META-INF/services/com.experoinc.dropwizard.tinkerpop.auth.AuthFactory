@@ -1,0 +1,2 @@
+com.experoinc.dropwizard.tinkerpop.auth.JaasAuthFactory
+com.experoinc.dropwizard.tinkerpop.auth.PlainTextAuthFactory
