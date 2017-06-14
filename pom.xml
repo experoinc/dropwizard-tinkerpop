@@ -20,7 +20,7 @@
 
     <artifactId>dropwizard-tinkerpop</artifactId>
     <groupId>com.experoinc</groupId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>Dropwizard TinkerPop</name>
     <description>A Dropwizard library to connect to Apache TinkerPop enabled graph servers</description>
     <url>https://github.com/experoinc/dropwizard-tinkerpop</url>
@@ -46,7 +46,7 @@
         <connection>scm:git:git://github.com/experoinc/dropwizard-tinkerpop.git</connection>
         <developerConnection>scm:git:git@github.com:experoinc/dropwizard-tinkerpop.git
         </developerConnection>
-        <tag>HEAD</tag>
+        <tag>v1.0.0</tag>
     </scm>
 
     <properties>
