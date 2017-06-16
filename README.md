@@ -5,6 +5,8 @@
 A [Dropwizard][DW] library that enables connectivity to [Apache TinkerPop][TP] enabled gremlin 
 servers.
 
+See [this blog post][BLOG] for a simple getting started guide.
+
 ## Components ##
 
 * Configuration
@@ -75,3 +77,4 @@ public class App extends Application<AppConfig> {
 
 [DW]: https://dropwizard.io
 [TP]: http://tinkerpop.apache.org
+[BLOG]: https://www.experoinc.com/post/building-a-micro-service-using-dropwizard-and-janusgraph
