@@ -1,1 +1,2 @@
 com.experoinc.dropwizard.tinkerpop.serializers.MessageSerializerFactory
+com.experoinc.dropwizard.tinkerpop.auth.AuthFactory

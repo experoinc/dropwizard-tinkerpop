@@ -17,13 +17,14 @@
 package com.experoinc.dropwizard.tinkerpop.auth;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import io.dropwizard.jackson.Discoverable;
 import org.apache.tinkerpop.gremlin.driver.AuthProperties;
 
 /**
  * @author Chris Pounds
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
-public interface AuthFactory {
+public interface AuthFactory extends Discoverable {
 
     /**
      * Construct the auth properties to use for connecting to the gremlin server
