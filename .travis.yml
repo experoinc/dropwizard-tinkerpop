@@ -14,4 +14,4 @@ before_install:
 install: true
 
 script:
-- echo ~/.gnupg/gpg.conf
+- echo ~/.gnupg/gpg.conf && gpg --list-keys && cp travis/.travis.settings.xml $HOME/.m2/settings.xml && mvn clean deploy
