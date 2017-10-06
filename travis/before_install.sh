@@ -10,5 +10,6 @@ if [ "${TRAVIS_BRANCH}" = 'master' ] && [ "${TRAVIS_PULL_REQUEST}" == 'false' ];
 
     gpg --output test.out --passphrase ${GPG_PASSPHRASE} --sign test.txt
     gpg --output test.dec --decrypt test.out
+    ls -alh
     cat test.dec
 fi
