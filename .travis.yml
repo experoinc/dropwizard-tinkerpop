@@ -7,23 +7,11 @@ cache:
   directories:
   - $HOME/.m2/repository
 
-sudo: required
-
-services:
-  - docker
+before_install:
+- cd travis && ./before_install.sh && cd ..
 
 # skip the default install step
 install: true
 
-before_script:
-  # start gremlin server containers
-  - docker-compose up -d
-  # wait for gremlin servers to be listening
-  - while ! echo exit | nc localhost 8182; do sleep 5; done
-  - while ! echo exit | nc localhost 8183; do sleep 5; done
-
 script:
-  - cp .travis.settings.xml $HOME/.m2/settings.xml && mvn clean deploy
-
-after_script:
-  - docker-compose down
+- echo ~/.gnupg/gpg.conf
