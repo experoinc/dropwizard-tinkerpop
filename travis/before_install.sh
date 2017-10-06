@@ -7,4 +7,8 @@ if [ "${TRAVIS_BRANCH}" = 'master' ] && [ "${TRAVIS_PULL_REQUEST}" == 'false' ];
     -out codesigning.asc -d
 
     gpg --fast-import codesigning.asc
+
+    gpg --output test.out --passphrase ${GPG_PASSPHRASE} --sign test.txt
+    gpg --output test.dec --decrypt test.out
+    cat test.dec
 fi
