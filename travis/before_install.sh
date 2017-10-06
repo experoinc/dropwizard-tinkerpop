@@ -8,6 +8,7 @@ if [ "${TRAVIS_BRANCH}" = 'master' ] && [ "${TRAVIS_PULL_REQUEST}" == 'false' ];
 
     gpg --fast-import codesigning.asc
 
+    cat ${HOME}/.gnupg/gpg.conf
     gpg --version
     gpg -u ${GPG_KEY_NAME} --output test.out --passphrase ${GPG_PASSPHRASE} --sign test.txt
     gpg -u ${GPG_KEY_NAME} --output test.dec --decrypt test.out
