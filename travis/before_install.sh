@@ -8,11 +8,15 @@ if [ "${TRAVIS_BRANCH}" = 'master' ] && [ "${TRAVIS_PULL_REQUEST}" == 'false' ];
 
     gpg --fast-import codesigning.asc
 
+  echo "public keys"
+  gpg --list-keys
+  echo "private keys"
+  gpg --list-secret-keys
   if [ -z "${GPG_PASSPHRASE}" ]; then
     echo "empty pass"
     else
     echo "present pass"
-    fi
+  fi
     echo "attempting signature"
     gpg --no-tty -u ${GPG_KEY_NAME} --output test.out --passphrase "${GPG_PASSPHRASE}" --sign test.txt
     echo "attempting signature2"
