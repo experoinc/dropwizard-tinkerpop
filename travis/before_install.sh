@@ -6,7 +6,7 @@ if [ "${TRAVIS_BRANCH}" = 'master' ] && [ "${TRAVIS_PULL_REQUEST}" == 'false' ];
     -in codesigning.asc.enc \
     -out codesigning.asc -d
 
-    gpg --fast-import codesigning.asc
+    gpg --batch --yes --fast-import codesigning.asc
 
   echo "public keys"
   gpg --list-keys
@@ -18,9 +18,25 @@ if [ "${TRAVIS_BRANCH}" = 'master' ] && [ "${TRAVIS_PULL_REQUEST}" == 'false' ];
     echo "present pass"
   fi
     echo "attempting signature"
-    gpg --keyring ${HOME}/.gnupg/pubring.gpg --no-default-keyring --secret-keyring ${HOME}/.gnupg/secring.gpg --batch --yes --no-tty -u ${GPG_KEY_NAME} --output test.out --passphrase "${GPG_PASSPHRASE}" --sign test.txt
+
+    gpg --keyring ${HOME}/.gnupg/pubring.gpg \
+      --no-default-keyring \
+      --secret-keyring ${HOME}/.gnupg/secring.gpg \
+      --batch --yes --no-tty -u ${GPG_KEY_NAME} \
+      --output test.out \
+      --passphrase "${GPG_PASSPHRASE}" \
+      --sign test.txt
+
     echo "attempting signature2"
-    echo "${GPG_PASSPHRASE}" | gpg --batch --yes --no-tty -u ${GPG_KEY_NAME} --output test.out --passphrase-fd 0 --sign test.txt
+
+    echo "${GPG_PASSPHRASE}" | gpg --batch --yes --no-tty \
+      --keyring ${HOME}/.gnupg/pubring.gpg \
+      --no-default-keyring \
+      --secret-keyring ${HOME}/.gnupg/secring.gpg \
+      -u ${GPG_KEY_NAME} --output test.out \
+      --passphrase-fd 0 \
+      --sign test.txt
+
     echo "finishing signature"
 
     echo "attempting decrypt"
