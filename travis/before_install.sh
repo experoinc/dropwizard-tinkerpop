@@ -24,6 +24,7 @@ if [ "${TRAVIS_BRANCH}" = 'master' ] && [ "${TRAVIS_PULL_REQUEST}" == 'false' ];
       --secret-keyring ${HOME}/.gnupg/secring.gpg \
       --batch --yes --no-tty -u ${GPG_KEY_NAME} \
       --output test.out \
+      --no-use-agent \
       --passphrase "${GPG_PASSPHRASE}" \
       --sign test.txt
 
@@ -35,6 +36,7 @@ if [ "${TRAVIS_BRANCH}" = 'master' ] && [ "${TRAVIS_PULL_REQUEST}" == 'false' ];
       --secret-keyring ${HOME}/.gnupg/secring.gpg \
       -u ${GPG_KEY_NAME} --output test.out \
       --passphrase-fd 0 \
+      --no-use-agent \
       --sign test.txt
 
     echo "finishing signature"
