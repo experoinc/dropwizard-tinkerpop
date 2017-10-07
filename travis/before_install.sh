@@ -6,7 +6,7 @@ if [ "${TRAVIS_BRANCH}" = 'master' ] && [ "${TRAVIS_PULL_REQUEST}" == 'false' ];
     -in codesigning.asc.enc \
     -out codesigning.asc -d
 
-  mkdir -p ${HOME}.gpg
+  mkdir -p ${HOME}/.gpg
   KEYRINGS="--keyring ${HOME}/.gpg/pubring.gpg "
   KEYRINGS+="--secret-keyring ${HOME}/.gpg/secring.gpg "
   KEYRINGS+="--primary-keyring ${HOME}/.gpg/pubring.gpg "
