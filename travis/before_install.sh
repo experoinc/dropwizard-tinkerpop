@@ -6,12 +6,17 @@ if [ "${TRAVIS_BRANCH}" = 'master' ] && [ "${TRAVIS_PULL_REQUEST}" == 'false' ];
     -in codesigning.asc.enc \
     -out codesigning.asc -d
 
-    gpg --batch --yes --fast-import codesigning.asc
+  KEYRINGS="--keyring ${HOME}/.gpg/pubring.gpg"
+  KEYRINGS+="--secret-keyring ${HOME}/.gpg/secring.gpg"
+  KEYRINGS+="--primary-keyring ${HOME}/.gpg/pubring.gpg"
+  KEYRINGS+="--no-default-keyring"
+
+    gpg ${KEYRINGS} --batch --yes --fast-import codesigning.asc
 
   echo "public keys"
-  gpg --list-keys
+  gpg ${KEYRINGS} --list-keys
   echo "private keys"
-  gpg --list-secret-keys
+  gpg ${KEYRINGS} --list-secret-keys
   if [ -z "${GPG_PASSPHRASE}" ]; then
     echo "empty pass"
     else
@@ -19,9 +24,7 @@ if [ "${TRAVIS_BRANCH}" = 'master' ] && [ "${TRAVIS_PULL_REQUEST}" == 'false' ];
   fi
     echo "attempting signature"
 
-    gpg --keyring ${HOME}/.gnupg/pubring.gpg \
-      --no-default-keyring \
-      --secret-keyring ${HOME}/.gnupg/secring.gpg \
+    gpg ${KEYRINGS} \
       --batch --yes --no-tty -u ${GPG_KEY_NAME} \
       --output test.out \
       --no-use-agent \
@@ -31,9 +34,7 @@ if [ "${TRAVIS_BRANCH}" = 'master' ] && [ "${TRAVIS_PULL_REQUEST}" == 'false' ];
     echo "attempting signature2"
 
     echo "${GPG_PASSPHRASE}" | gpg --batch --yes --no-tty \
-      --keyring ${HOME}/.gnupg/pubring.gpg \
-      --no-default-keyring \
-      --secret-keyring ${HOME}/.gnupg/secring.gpg \
+      ${KEYRINGS} \
       -u ${GPG_KEY_NAME} --output test.out \
       --passphrase-fd 0 \
       --no-use-agent \
@@ -42,7 +43,7 @@ if [ "${TRAVIS_BRANCH}" = 'master' ] && [ "${TRAVIS_PULL_REQUEST}" == 'false' ];
     echo "finishing signature"
 
     echo "attempting decrypt"
-    gpg -u ${GPG_KEY_NAME} --output test.dec --decrypt test.out
+    gpg ${KEYRINGS} -u ${GPG_KEY_NAME} --output test.dec --decrypt test.out
     echo "finishing decrypt"
     ls -alh
     cat test.dec
