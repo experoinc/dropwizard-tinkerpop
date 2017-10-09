@@ -12,7 +12,10 @@ if [ "${TRAVIS_BRANCH}" = 'master' ] && [ "${TRAVIS_PULL_REQUEST}" == 'false' ];
   KEYRINGS+="--primary-keyring ${HOME}/.gpg/pubring.gpg "
   KEYRINGS+="--no-default-keyring "
 
-    gpg ${KEYRINGS} --batch --yes --fast-import codesigning.asc
+  echo "gpg version"
+  gpg --version
+
+  gpg ${KEYRINGS} --batch --yes --fast-import codesigning.asc
 
   echo "public keys"
   gpg ${KEYRINGS} --list-keys
@@ -32,7 +35,7 @@ if [ "${TRAVIS_BRANCH}" = 'master' ] && [ "${TRAVIS_PULL_REQUEST}" == 'false' ];
       --passphrase "${GPG_PASSPHRASE}" \
       --sign test.txt
 
-    echo "attempting signature2"
+    echo "attempting signature 2"
 
     echo "${GPG_PASSPHRASE}" | gpg --batch --yes --no-tty \
       ${KEYRINGS} \
