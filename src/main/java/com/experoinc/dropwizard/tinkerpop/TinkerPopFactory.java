@@ -345,8 +345,7 @@ public class TinkerPopFactory {
         this.validationQueryTimeout = validationQueryTimeout;
     }
 
-    @JsonIgnore
-    public Cluster build(Environment environment) {
+    protected Cluster build() {
         Cluster.Builder builder = Cluster.build()
                 .addContactPoints(contactPoints)
                 .port(port)
@@ -373,6 +372,14 @@ public class TinkerPopFactory {
                 .maxContentLength(maxContentLength);
 
         Cluster cluster = builder.create();
+
+        return cluster;
+    }
+
+    @JsonIgnore
+    public Cluster build(Environment environment) {
+        final Cluster cluster = build();
+
         environment.lifecycle().manage(new TinkerPopManaged(cluster, getShutdownTimeout()));
         environment.healthChecks().register("tinkerpop", new TinkerPopHealthCheck(cluster, validationQuery, validationQueryTimeout));
 

@@ -3,8 +3,8 @@ package com.experoinc.dropwizard.tinkerpop.serializers;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.apache.tinkerpop.gremlin.driver.MessageSerializer;
-import org.apache.tinkerpop.gremlin.driver.ser.AbstractGraphSONMessageSerializerV1d0;
-import org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessageSerializerV1d0;
+import org.apache.tinkerpop.gremlin.driver.ser.AbstractGraphSONMessageSerializerV2d0;
+import org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessageSerializerGremlinV2d0;
 
 import javax.validation.constraints.NotNull;
 import java.util.Collections;
@@ -15,8 +15,8 @@ import java.util.Map;
 /**
  * @author Ted Wilmes
  */
-@JsonTypeName("graphSONMessageSerializerV1d0")
-public class GraphSONMessageSerializerV1d0Factory implements MessageSerializerFactory {
+@JsonTypeName("graphSONMessageSerializerGremlinV2d0")
+public class GraphSONMessageSerializerGremlinV2d0Factory implements MessageSerializerFactory {
 
     @NotNull
     private List<String> ioRegistries = Collections.emptyList();
@@ -34,9 +34,9 @@ public class GraphSONMessageSerializerV1d0Factory implements MessageSerializerFa
     @Override
     public MessageSerializer build() {
         Map<String, Object> config = new HashMap<>();
-        config.put(AbstractGraphSONMessageSerializerV1d0.TOKEN_IO_REGISTRIES, ioRegistries);
+        config.put(AbstractGraphSONMessageSerializerV2d0.TOKEN_IO_REGISTRIES, ioRegistries);
 
-        GraphSONMessageSerializerV1d0 serializer = new GraphSONMessageSerializerV1d0();
+        GraphSONMessageSerializerGremlinV2d0 serializer = new GraphSONMessageSerializerGremlinV2d0();
         serializer.configure(config, null);
         return serializer;
     }
