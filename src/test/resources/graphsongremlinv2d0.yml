@@ -1,0 +1,7 @@
+contactPoints:
+  - localhost
+port: 8182
+serializer:
+  type: graphSONMessageSerializerGremlinV2d0
+  ioRegistries:
+    - org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerIoRegistryV2d0

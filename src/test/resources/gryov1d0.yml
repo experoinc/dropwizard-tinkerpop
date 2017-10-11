@@ -1,0 +1,5 @@
+contactPoints:
+  - localhost
+port: 8182
+serializer:
+  type: gryoMessageSerializerV1d0

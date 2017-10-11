@@ -1,0 +1,12 @@
+contactPoints:
+  - localhost
+port: 8183
+serializer:
+  type: gryoMessageSerializerV1d0
+  serializeResultToString: true
+ssl:
+  enabled: true
+auth:
+  type: plainText
+  username: stephen
+  password: password
