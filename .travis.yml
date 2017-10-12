@@ -6,6 +6,8 @@ cache:
   directories:
   - "$HOME/.m2/repository"
 before_install:
+- sudo apt-get -qq update
+- sudo apt-get install --only-upgrade -y gnupg
 - cd travis && ./before_install.sh && cd ..
 install: true
 script:
