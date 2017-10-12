@@ -1,0 +1,13 @@
+version: '2'
+services:
+  gremlin-server:
+    image: jbmusso/gremlin-server
+    ports:
+      - 8182:8182
+    command: conf/gremlin-server.yaml
+  gremlin-server-ssl:
+      image: jbmusso/gremlin-server
+      ports:
+        - 8183:8182
+      command: conf/gremlin-server-secure.yaml
+

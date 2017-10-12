@@ -75,6 +75,12 @@ public class App extends Application<AppConfig> {
 }
 ```
 
+## Testing
+
+Docker Compose is required for testing. Running `docker-compose up -d` will start two Gremlin 
+server containers, one for SSL and one for non-SSL testing. You can run `docker-compose down` to
+stop and remove the containers. Tests are run by running `mvn clean install`.
+
 [DW]: https://dropwizard.io
 [TP]: http://tinkerpop.apache.org
 [BLOG]: https://www.experoinc.com/post/building-a-micro-service-using-dropwizard-and-janusgraph

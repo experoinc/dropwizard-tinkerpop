@@ -63,6 +63,10 @@ public class TinkerPopFactoryTest {
     @Before
     public void setUp() throws URISyntaxException, IOException, ConfigurationException {
         connect();
+    }
+
+    @After
+    public void tearDown() {
         client.submit("g.V().drop()");
     }
 
