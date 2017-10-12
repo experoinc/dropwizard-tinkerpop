@@ -12,13 +12,6 @@ sudo: required
 services:
   - docker
 
-before_install:
-- docker pull jbmusso/gremlin-server
-- docker run -d --name gremlin-server -p 8182:8182 jbmusso/gremlin-server:latest
-- docker run -d --name gremlin-server-ssl -p 8183:8182 jbmusso/gremlin-server:latest conf/gremlin-server-secure.yaml
-- while ! echo exit | nc localhost 8182; do sleep 5; done
-- while ! echo exit | nc localhost 8183; do sleep 5; done
-
 # skip the default install step
 install: true
 
