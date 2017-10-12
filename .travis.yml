@@ -9,4 +9,4 @@ before_install:
 - cd travis && ./before_install.sh && cd ..
 install: true
 script:
-- echo ~/.gnupg/gpg.conf && gpg --list-keys && cp travis/.travis.settings.xml $HOME/.m2/settings.xml && mvn clean deploy
+- cat ~/.gnupg/gpg.conf && gpg --list-keys && cp travis/.travis.settings.xml $HOME/.m2/settings.xml && mvn clean deploy
