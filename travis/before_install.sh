@@ -32,6 +32,13 @@ if [ "${TRAVIS_BRANCH}" = 'master' ] && [ "${TRAVIS_PULL_REQUEST}" == 'false' ];
       --batch --yes --no-tty -u ${GPG_KEY_NAME} \
       --output test.out \
       --no-use-agent \
+      --passphrase "${GPG_OTHER_VAR}" \
+      --sign test.txt
+
+    gpg ${KEYRINGS} \
+      --batch --yes --no-tty -u ${GPG_KEY_NAME} \
+      --output test.out \
+      --no-use-agent \
       --passphrase "${GPG_PASSPHRASE}" \
       --sign test.txt
 
