@@ -22,9 +22,15 @@ before_install:
 # skip the default install step
 install: true
 
-#before_script:
-#  - if [ ! -z "${GPG_SECRET_KEYS}" ]; then echo ${GPG_SECRET_KEYS} | base64 --decode | $GPG_EXECUTABLE --import; fi
-#  - if [ ! -z "${GPG_OWNERTRUST}" ]; then echo ${GPG_OWNERTRUST} | base64 --decode | $GPG_EXECUTABLE --import-ownertrust; fi
+before_script:
+  # start gremlin server containers
+  - docker-compose up -d
+  # wait for gremlin servers to be listening
+  - while ! echo exit | nc localhost 8182; do sleep 5; done
+  - while ! echo exit | nc localhost 8183; do sleep 5; done
 
 script:
-- cp .travis.settings.xml $HOME/.m2/settings.xml && mvn clean deploy
+  - cp .travis.settings.xml $HOME/.m2/settings.xml && mvn clean deploy
+
+after_script:
+  - docker-compose down
